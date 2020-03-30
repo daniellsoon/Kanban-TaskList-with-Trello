@@ -23,8 +23,13 @@ dependencies {
 	annotationProcessor('org.projectlombok:lombok:1.18.12')
 
 	testCompile('org.springframework.boot:spring-boot-starter-test')
+	implementation ('junit:junit:4.12')
 
 	//providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
+}
+
+test {
+	useJUnitPlatform()
 }
 
 
