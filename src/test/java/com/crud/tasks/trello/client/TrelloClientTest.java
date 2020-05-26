@@ -72,25 +72,25 @@ public class TrelloClientTest {
 
         AttachmentByType attachmentByType = new AttachmentByType(new Trello(0, 0));
         Badges badges = new Badges(0, attachmentByType);
-        CreatedTrelloCard createdTrelloCard = new CreatedTrelloCard(
+        CreatedTrelloCardDto createdTrelloCardDto = new CreatedTrelloCardDto(
                 "1",
                 "Test task",
-                "http://test.com",
-                badges
+                "http://test.com"
+//                ,badges
         );
 
-        when(restTemplate.postForObject(uri, null, CreatedTrelloCard.class)).thenReturn(createdTrelloCard);
+        when(restTemplate.postForObject(uri, null, CreatedTrelloCardDto.class)).thenReturn(createdTrelloCardDto);
 
         //When
-        CreatedTrelloCard newCard = trelloClient.createNewCard(trelloCardDto);
+        CreatedTrelloCardDto newCard = trelloClient.createNewCard(trelloCardDto);
 
         //Then
         assertEquals("1", newCard.getId());
         assertEquals("Test task", newCard.getName());
         assertEquals("http://test.com", newCard.getShortUrl());
-        assertEquals(0, newCard.getBadges().getVotes());
-        assertEquals(0, newCard.getBadges().getAttachments().getTrello().getBoard());
-        assertEquals(0, newCard.getBadges().getAttachments().getTrello().getCard());
+//        assertEquals(0, newCard.getBadges().getVotes());
+//        assertEquals(0, newCard.getBadges().getAttachments().getTrello().getBoard());
+//        assertEquals(0, newCard.getBadges().getAttachments().getTrello().getCard());
     }
 
     @Test
